@@ -1,5 +1,5 @@
-import PremiumLandingPage from '@/components/voyabajo/PREMIUM_LANDING_PAGE'
+import LaGattaLandingPage from '@/components/voyabajo/LAGATTA_LANDING_PAGE'
 
 export default function HomePage() {
-  return <PremiumLandingPage />
+  return <LaGattaLandingPage />
 }
