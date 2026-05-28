@@ -9,8 +9,11 @@ function formatIDR(n: number) {
 // ─── HERO ─────────────────────────────────────────────────────────────────────
 function HeroSection() {
   return (
-    <section className="relative overflow-hidden" style={{ backgroundColor: '#22282B', minHeight: '100vh' }}>
-      {/* SVG ocean/sky background */}
+    <section
+      className="relative overflow-hidden"
+      style={{ backgroundColor: '#0d1b26', height: '100vh', minHeight: '600px' }}
+    >
+      {/* ── SVG full-bleed dark ocean background ── */}
       <svg
         className="absolute inset-0 w-full h-full"
         viewBox="0 0 1440 900"
@@ -19,228 +22,226 @@ function HeroSection() {
         aria-hidden="true"
       >
         <defs>
-          <linearGradient id="lg-sky" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%"   stopColor="#0d1b26" />
-            <stop offset="45%"  stopColor="#22282B" />
-            <stop offset="100%" stopColor="#1a2830" />
+          <linearGradient id="lg-sky2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stopColor="#060e14" />
+            <stop offset="40%"  stopColor="#0d1b26" />
+            <stop offset="100%" stopColor="#0a1520" />
           </linearGradient>
-          <linearGradient id="lg-ocean" x1="0" y1="0" x2="0" y2="1">
+          <linearGradient id="lg-ocean2" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%"   stopColor="#0e2535" />
-            <stop offset="100%" stopColor="#071419" />
+            <stop offset="100%" stopColor="#04090d" />
           </linearGradient>
-          <radialGradient id="lg-moon" cx="50%" cy="50%">
-            <stop offset="0%"   stopColor="#fffef0" stopOpacity="0.95" />
-            <stop offset="60%"  stopColor="#f5e8c0" stopOpacity="0.4" />
-            <stop offset="100%" stopColor="#f5e8c0" stopOpacity="0" />
+          <radialGradient id="lg-moon2" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"   stopColor="#fffef0" stopOpacity="0.9" />
+            <stop offset="50%"  stopColor="#d4c88a" stopOpacity="0.3" />
+            <stop offset="100%" stopColor="#d4c88a" stopOpacity="0" />
           </radialGradient>
-          <filter id="lg-glow">
-            <feGaussianBlur stdDeviation="20" result="blur"/>
+          <filter id="lg-glow2">
+            <feGaussianBlur stdDeviation="25" result="blur"/>
             <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
           </filter>
-          <linearGradient id="lg-orange-sail" x1="0" y1="0" x2="1" y2="1">
+          <filter id="lg-boat-shadow">
+            <feDropShadow dx="0" dy="8" stdDeviation="12" floodColor="#000000" floodOpacity="0.5"/>
+          </filter>
+          <linearGradient id="lg-orange-sail2" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0%"   stopColor="#F16222" />
-            <stop offset="100%" stopColor="#C94912" />
+            <stop offset="100%" stopColor="#a03a10" />
           </linearGradient>
-          <linearGradient id="lg-shimmer" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%"   stopColor="#F16222" stopOpacity="0" />
-            <stop offset="50%"  stopColor="#F16222" stopOpacity="0.08" />
-            <stop offset="100%" stopColor="#F16222" stopOpacity="0" />
+          {/* Wave highlight */}
+          <linearGradient id="lg-wave-light" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%"   stopColor="white" stopOpacity="0" />
+            <stop offset="30%"  stopColor="white" stopOpacity="0.04" />
+            <stop offset="70%"  stopColor="white" stopOpacity="0.06" />
+            <stop offset="100%" stopColor="white" stopOpacity="0" />
           </linearGradient>
-          <linearGradient id="lg-horizon-fade" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%"   stopColor="#22282B" stopOpacity="0" />
-            <stop offset="40%"  stopColor="#22282B" stopOpacity="0.3" />
-            <stop offset="100%" stopColor="#22282B" stopOpacity="0.9" />
-          </linearGradient>
+          {/* Vignette */}
+          <radialGradient id="lg-vig2" cx="50%" cy="50%" r="70%">
+            <stop offset="30%"  stopColor="transparent" />
+            <stop offset="100%" stopColor="rgba(6,14,20,0.7)" />
+          </radialGradient>
         </defs>
 
-        {/* Sky */}
-        <rect width="1440" height="900" fill="url(#lg-sky)" />
+        {/* Deep sky */}
+        <rect width="1440" height="900" fill="url(#lg-sky2)" />
 
-        {/* Stars — dots */}
-        {[
-          [200,80],[350,45],[500,120],[650,60],[800,90],[950,40],[1100,110],[1250,75],[100,140],[420,30],[730,155],[1060,50],[1350,130],[80,60],[300,170],[600,25],[900,145],[1200,80],[1400,55],[170,100],[470,75],[760,35],[1020,160],[1310,95],
-        ].map(([x,y], i) => (
-          <circle key={i} cx={x} cy={y} r={i % 3 === 0 ? 1.2 : 0.7} fill="white" opacity={0.3 + (i % 5) * 0.1} />
+        {/* Stars */}
+        {([
+          [150,60],[280,35],[430,90],[560,45],[720,75],[880,30],[1020,95],[1180,55],[1300,80],[1420,40],
+          [90,130],[340,110],[510,145],[670,100],[840,120],[1010,140],[1200,105],[1370,125],
+          [200,170],[450,155],[630,180],[810,160],[1050,175],[1250,150],[50,85],[380,50],[700,135],[950,60],[1150,90],[1380,70],
+        ] as [number,number][]).map(([x,y], i) => (
+          <circle key={i} cx={x} cy={y} r={i % 4 === 0 ? 1.3 : i % 3 === 0 ? 0.9 : 0.6}
+            fill="white" opacity={0.15 + (i % 7) * 0.06} />
         ))}
 
-        {/* Moon glow */}
-        <circle cx="1150" cy="130" r="90" fill="url(#lg-moon)" filter="url(#lg-glow)" opacity="0.5" />
-        <circle cx="1150" cy="130" r="35" fill="#fffef0" opacity="0.85" />
-        <circle cx="1150" cy="130" r="28" fill="#fffff8" />
+        {/* Moon */}
+        <circle cx="1100" cy="160" r="120" fill="url(#lg-moon2)" filter="url(#lg-glow2)" opacity="0.6" />
+        <circle cx="1100" cy="160" r="38" fill="#fffef0" opacity="0.9" />
+        <circle cx="1100" cy="160" r="28" fill="#fffff8" />
 
         {/* Horizon mist */}
-        <rect x="0" y="490" width="1440" height="60" fill="#22282B" opacity="0.5" />
+        <rect x="0" y="480" width="1440" height="80"
+          fill="url(#lg-sky2)" opacity="0.6" />
 
-        {/* Ocean */}
-        <rect x="0" y="530" width="1440" height="370" fill="url(#lg-ocean)" />
+        {/* Ocean surface */}
+        <rect x="0" y="540" width="1440" height="360" fill="url(#lg-ocean2)" />
 
-        {/* Subtle wave lines */}
-        {[560, 600, 640, 680, 720, 760].map((y, i) => (
+        {/* Long wave highlights — mimicking real ocean texture */}
+        {[560, 590, 620, 655, 695, 740, 790, 850].map((y, i) => (
           <path key={i}
-            d={`M0 ${y} Q360 ${y - 8} 720 ${y} Q1080 ${y + 8} 1440 ${y}`}
-            stroke="white" strokeWidth="0.5" fill="none" opacity={0.04 - i * 0.005} />
+            d={`M${-100 + i * 20} ${y} Q${350 + i * 10} ${y - 6} ${720} ${y} Q${1080 - i * 8} ${y + 5} ${1540 - i * 15} ${y - 3}`}
+            stroke="white" strokeWidth={i < 3 ? 0.8 : 0.5} fill="none"
+            opacity={0.04 - i * 0.003} />
         ))}
 
-        {/* Orange shimmer reflections (moonlight + orange) */}
-        {[570, 610, 650].map((y, i) => (
-          <rect key={i} x="0" y={y} width="1440" height="1.5" fill="url(#lg-shimmer)" opacity={0.7 - i * 0.15} />
-        ))}
+        {/* Wave shimmer patches */}
+        <rect x="0" y="555" width="1440" height="3" fill="url(#lg-wave-light)" opacity="0.8" />
+        <rect x="0" y="580" width="1440" height="2" fill="url(#lg-wave-light)" opacity="0.5" />
 
-        {/* Far island silhouettes */}
-        <path d="M-20 535 Q80 430 180 460 Q240 445 300 462 Q360 448 420 464 L420 535 Z"
-          fill="#0d1a22" opacity="0.8" />
-        <path d="M1020 535 Q1100 435 1190 458 Q1260 440 1330 456 Q1390 445 1450 462 L1450 535 Z"
-          fill="#0d1a22" opacity="0.8" />
+        {/* Moonlight reflection on water */}
+        <path d="M980 545 Q1100 555 1220 545 Q1150 600 1050 595 Q980 590 980 545 Z"
+          fill="white" opacity="0.04" />
+        <path d="M1020 575 Q1100 582 1180 575 Q1140 610 1060 607 Q1020 602 1020 575 Z"
+          fill="white" opacity="0.025" />
 
-        {/* Main left island */}
-        <path d="M-30 535 Q40 395 140 420 Q200 400 270 418 Q330 405 390 420 Q430 410 460 424 L460 535 Z"
-          fill="#0a1a22" />
-        {/* Island vegetation silhouette */}
-        {[70, 140, 210, 290, 360, 420].map((x, i) => (
-          <path key={i} d={`M${x} ${420 + i * 2} L${x - 12} ${440 + i * 2} L${x + 12} ${440 + i * 2} Z`}
-            fill="#0e2535" opacity="0.9" />
-        ))}
+        {/* Far island silhouettes (very dark) */}
+        <path d="M-20 542 Q60 450 150 472 Q210 455 280 470 Q340 458 390 472 L390 542 Z"
+          fill="#060e14" opacity="0.95" />
+        <path d="M1050 542 Q1120 455 1210 472 Q1270 458 1330 470 Q1400 460 1460 475 L1460 542 Z"
+          fill="#060e14" opacity="0.95" />
 
-        {/* Main right island */}
-        <path d="M980 535 Q1040 400 1130 422 Q1190 408 1250 422 Q1310 410 1380 425 Q1420 418 1460 430 L1460 535 Z"
-          fill="#0a1a22" />
-        {[1010, 1080, 1155, 1230, 1310, 1390].map((x, i) => (
-          <path key={i} d={`M${x} ${422 + i * 2} L${x - 11} ${440 + i * 2} L${x + 11} ${440 + i * 2} Z`}
-            fill="#0e2535" opacity="0.9" />
-        ))}
-
-        {/* Phinisi 1 — center, orange sails (hero boat) */}
-        <g transform="translate(640, 420)">
-          {/* Hull */}
-          <path d="M5 90 Q50 100 100 90 Q108 108 82 115 Q50 120 18 115 Z" fill="#1a0e05" />
-          <path d="M5 90 L18 115 Q50 120 82 115 L95 90 Z" fill="#2d1808" />
+        {/* MAIN PHINISI — center, angled slightly like La Gatta boat */}
+        <g filter="url(#lg-boat-shadow)" transform="translate(530, 390) rotate(-8, 100, 80)">
+          {/* Hull — elongated */}
+          <path d="M0 95 Q55 108 130 100 Q145 118 110 126 Q65 132 15 126 Z" fill="#120a04" />
+          <path d="M0 95 L15 126 Q65 132 110 126 L125 100 Z" fill="#1e0f06" />
           {/* Deck */}
-          <rect x="20" y="84" width="62" height="7" fill="#3d2010" />
+          <rect x="15" y="88" width="90" height="8" fill="#2a1408" />
+          {/* Cabin structures */}
+          <rect x="35" y="78" width="30" height="12" fill="#251208" />
+          <rect x="72" y="82" width="20" height="8" fill="#251208" />
           {/* Mast */}
-          <line x1="55" y1="84" x2="55" y2="5" stroke="#2d1808" strokeWidth="3.5" />
-          <line x1="55" y1="84" x2="55" y2="40" stroke="#2d1808" strokeWidth="2" />
+          <line x1="62" y1="88" x2="62" y2="-5" stroke="#1e0f06" strokeWidth="4" />
+          {/* Fore mast */}
+          <line x1="62" y1="88" x2="62" y2="35" stroke="#1e0f06" strokeWidth="2.5" />
           {/* Bowsprit */}
-          <line x1="55" y1="80" x2="5" y2="65" stroke="#2d1808" strokeWidth="1.8" />
+          <line x1="62" y1="82" x2="5" y2="62" stroke="#1e0f06" strokeWidth="2" />
           {/* ORANGE main sail */}
-          <polygon points="55,8 55,80 108,65" fill="url(#lg-orange-sail)" opacity="0.92" />
-          {/* White fore sail */}
-          <polygon points="55,38 55,80 12,70" fill="#e8dcc8" opacity="0.85" />
-          {/* Orange jib */}
-          <polygon points="55,22 55,68 5,65" fill="#F16222" opacity="0.45" />
+          <polygon points="62,-2 62,84 128,66" fill="url(#lg-orange-sail2)" opacity="0.88" />
+          {/* Cream fore sail */}
+          <polygon points="62,38 62,84 14,74" fill="#d4c8a8" opacity="0.82" />
+          {/* Orange mizzen */}
+          <polygon points="62,15 62,70 8,62" fill="#F16222" opacity="0.35" />
           {/* Flag */}
-          <polygon points="55,5 55,17 66,11" fill="#F16222" />
-          {/* Water reflection */}
-          <path d="M18 115 Q50 125 82 115 Q50 135 18 115 Z" fill="#F16222" opacity="0.05" />
+          <polygon points="62,-5 62,10 76,3" fill="#F16222" opacity="0.9" />
+          {/* Water line reflection */}
+          <path d="M15 126 Q65 136 110 126" stroke="white" strokeWidth="0.5" fill="none" opacity="0.15" />
         </g>
 
-        {/* Phinisi 2 — left */}
-        <g transform="translate(360, 448)" opacity="0.75">
-          <path d="M4 68 Q38 77 72 68 Q79 82 58 88 Q38 92 14 88 Z" fill="#1a0e05" />
-          <line x1="38" y1="68" x2="38" y2="6" stroke="#2d1808" strokeWidth="2.8" />
-          <polygon points="38,8 38,64 72,52" fill="#F16222" opacity="0.7" />
-          <polygon points="38,30 38,64 10,58" fill="#e8dcc8" opacity="0.8" />
-          <polygon points="38,6 38,16 47,11" fill="#F16222" opacity="0.9" />
+        {/* Smaller boat left */}
+        <g transform="translate(280, 460)" opacity="0.55">
+          <path d="M3 65 Q35 74 66 65 Q72 78 52 84 Q35 88 12 84 Z" fill="#120a04" />
+          <line x1="35" y1="65" x2="35" y2="8" stroke="#1e0f06" strokeWidth="2.5" />
+          <polygon points="35,10 35,62 66,50" fill="#F16222" opacity="0.7" />
+          <polygon points="35,28 35,62 8,56" fill="#d4c8a8" opacity="0.75" />
         </g>
 
-        {/* Phinisi 3 — right */}
-        <g transform="translate(940, 442)" opacity="0.7">
-          <path d="M4 64 Q36 72 68 64 Q74 77 55 83 Q36 87 13 83 Z" fill="#1a0e05" />
-          <line x1="36" y1="64" x2="36" y2="6" stroke="#2d1808" strokeWidth="2.5" />
-          <polygon points="36,8 36,60 68,48" fill="#C94912" opacity="0.75" />
-          <polygon points="36,28 36,60 8,54" fill="#e8dcc8" opacity="0.75" />
-          <polygon points="36,6 36,15 45,10" fill="#F16222" opacity="0.9" />
+        {/* Smaller boat right */}
+        <g transform="translate(870, 450)" opacity="0.45">
+          <path d="M3 60 Q32 68 62 60 Q67 72 48 78 Q32 82 11 78 Z" fill="#120a04" />
+          <line x1="32" y1="60" x2="32" y2="8" stroke="#1e0f06" strokeWidth="2" />
+          <polygon points="32,10 32,56 62,46" fill="#C94912" opacity="0.65" />
+          <polygon points="32,26 32,56 8,52" fill="#d4c8a8" opacity="0.7" />
         </g>
 
-        {/* Horizon fade */}
-        <rect x="0" y="400" width="1440" height="500" fill="url(#lg-horizon-fade)" />
+        {/* Vignette */}
+        <rect width="1440" height="900" fill="url(#lg-vig2)" />
+
+        {/* Extra dark bottom fade */}
+        <linearGradient id="lg-bottom-fade" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stopColor="transparent" />
+          <stop offset="100%" stopColor="rgba(6,14,20,0.6)" />
+        </linearGradient>
+        <rect x="0" y="600" width="1440" height="300" fill="url(#lg-bottom-fade)" />
       </svg>
 
-      {/* ── Content ── */}
-      <div className="relative z-10 flex flex-col items-center justify-center text-center text-white"
-        style={{ minHeight: '100vh', padding: '0 40px' }}>
+      {/* ── Transparent Nav Overlay ── */}
+      <div className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between"
+        style={{ padding: '36px 48px' }}>
+        {/* Left: Menu button */}
+        <button
+          className="flex items-center gap-2 transition-colors duration-300"
+          style={{ fontFamily: 'var(--font-body)', fontWeight: 400, fontSize: '15px', letterSpacing: '0.06em', color: 'rgba(255,255,255,0.65)', background: 'none', border: 'none', cursor: 'pointer' }}
+          onClick={() => {
+            // open full-screen menu — handled by Header component in layout
+            // For now, link to products
+            window.location.href = '/home/products'
+          }}
+        >
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" />
+          </svg>
+          <span>Menu</span>
+        </button>
 
-        {/* Eyebrow */}
-        <p className="mb-8 tracking-widest uppercase text-xs"
-          style={{ color: '#758896', fontFamily: 'var(--font-body)', fontWeight: 500, letterSpacing: '0.15em' }}>
-          Labuan Bajo · Indonesia
-        </p>
+        {/* Center: Bordered icon */}
+        <a href="/home" className="flex items-center justify-center transition-colors duration-300 hover:border-white/60"
+          style={{ width: '52px', height: '52px', border: '1px solid rgba(255,255,255,0.35)', color: 'rgba(255,255,255,0.75)' }}>
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '22px', height: '22px' }}>
+            <circle cx="16" cy="9" r="3" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+            <line x1="16" y1="12" x2="16" y2="26" stroke="currentColor" strokeWidth="1.5"/>
+            <path d="M8 18 Q16 22 24 18" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+            <path d="M10 26 Q16 20 22 26" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+          </svg>
+        </a>
 
-        {/* Display heading — Ogg/Playfair style */}
-        <h1 className="mb-8"
+        {/* Right: Book */}
+        <a href="/home/booking"
+          className="transition-colors duration-300 hover:text-white"
+          style={{ fontFamily: 'var(--font-body)', fontWeight: 400, fontSize: '15px', letterSpacing: '0.06em', color: 'rgba(255,255,255,0.65)' }}>
+          Book
+        </a>
+      </div>
+
+      {/* ── GHOST HEADLINE — La Gatta style ── */}
+      <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none"
+        style={{ padding: '0 40px' }}>
+        <h1
           style={{
             fontFamily: 'var(--font-display)',
             fontWeight: 400,
-            fontSize: 'clamp(48px, 8vw, 84px)',
-            lineHeight: '1.05',
+            fontSize: 'clamp(52px, 9vw, 120px)',
+            lineHeight: '1.0',
             letterSpacing: '-0.02em',
-            maxWidth: '820px',
-          }}>
-          Semua Perjalanan Bajo,
+            color: 'rgba(255,255,255,0.18)',
+            textAlign: 'center',
+            maxWidth: '1100px',
+            userSelect: 'none',
+          }}
+        >
+          Semua Perjalanan
           <br />
-          <em style={{ color: '#F16222', fontStyle: 'italic' }}>1 Aplikasi Aja</em>
+          Bajo, 1 Aplikasi
         </h1>
+      </div>
 
-        {/* Subheading */}
-        <p className="mb-12 max-w-xl"
+      {/* ── Brand name bottom center ── */}
+      <div className="absolute bottom-10 left-0 right-0 z-20 flex flex-col items-center gap-4">
+        <p
           style={{
             fontFamily: 'var(--font-body)',
-            fontWeight: 300,
-            fontSize: '18px',
-            lineHeight: '28px',
-            color: 'rgba(255,255,255,0.7)',
-          }}>
-          Dari kapal phinisi hingga restoran lokal — temukan semua yang kamu butuhkan untuk petualangan sempurna.
+            fontWeight: 500,
+            fontSize: '12px',
+            letterSpacing: '0.25em',
+            textTransform: 'uppercase',
+            color: 'rgba(255,255,255,0.5)',
+          }}
+        >
+          V O Y A B A J O
         </p>
 
-        {/* CTAs — La Gatta style: ghost + text */}
-        <div className="flex flex-wrap items-center justify-center gap-6 mb-16">
-          <a href="/home/products"
-            className="transition-all duration-300 hover:bg-white hover:text-[#22282B]"
-            style={{
-              border: '1px solid rgba(255,255,255,0.7)',
-              color: '#FFFFFF',
-              fontFamily: 'var(--font-body)',
-              fontWeight: 500,
-              fontSize: '16px',
-              padding: '16px 40px',
-              display: 'inline-block',
-            }}>
-            Jelajahi Sekarang
-          </a>
-          <a href="/home/booking"
-            className="transition-colors duration-300 hover:text-white"
-            style={{
-              color: '#758896',
-              fontFamily: 'var(--font-body)',
-              fontWeight: 500,
-              fontSize: '16px',
-              display: 'inline-block',
-              padding: '16px 0',
-            }}>
-            Pesan Perjalanan →
-          </a>
-        </div>
-
-        {/* Stats row */}
-        <div className="flex flex-wrap justify-center gap-12"
-          style={{ borderTop: '1px solid rgba(117,136,150,0.2)', paddingTop: '40px', maxWidth: '600px', width: '100%' }}>
-          {[
-            { value: '500+', label: 'Kapal Phinisi' },
-            { value: '10K+', label: 'Wisatawan' },
-            { value: '4.8★', label: 'Rating' },
-          ].map(s => (
-            <div key={s.label} className="text-center">
-              <p style={{ fontFamily: 'var(--font-display)', fontSize: '28px', fontWeight: 400, color: '#F16222' }}>{s.value}</p>
-              <p style={{ fontFamily: 'var(--font-body)', fontSize: '12px', color: '#758896', letterSpacing: '0.08em', textTransform: 'uppercase', marginTop: '4px' }}>{s.label}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Scroll hint */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
-          <div style={{ width: '1px', height: '48px', backgroundColor: '#758896' }} className="animate-bounce" />
-          <p style={{ fontFamily: 'var(--font-body)', fontSize: '11px', color: '#758896', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Scroll</p>
-        </div>
+        {/* Scroll line */}
+        <div style={{ width: '1px', height: '40px', backgroundColor: 'rgba(255,255,255,0.25)' }} />
       </div>
     </section>
   )
