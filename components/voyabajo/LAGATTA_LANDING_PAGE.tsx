@@ -1,3 +1,4 @@
+'use client'
 import { mockTestimonials, mockProducts, features, merchantStats } from '@/lib/mockData'
 import type { Product } from '@/lib/types'
 
