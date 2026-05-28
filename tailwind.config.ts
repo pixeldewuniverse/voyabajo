@@ -49,6 +49,13 @@ const config: Config = {
           600: '#dc2626',
           700: '#b91c1c',
         },
+        voyabajo: {
+          primary: '#F16222',
+          hover: '#DD5719',
+          active: '#C94912',
+          dark: '#231F20',
+          white: '#FFFFFF',
+        },
       },
       fontFamily: {
         heading: ['var(--font-poppins)', 'sans-serif'],

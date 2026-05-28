@@ -1,4 +1,4 @@
-import type { Product, Booking } from './types'
+import type { Product, Booking, Testimonial, User, RevenueMonth } from './types'
 
 export const mockProducts: Product[] = [
   { id: '1', name: 'Phinisi Labuan Bajo Premium', category: 'phinisi', price: 2500000, rating: 4.9, reviews: 128, image: '/images/phinisi1.jpg', description: 'Jelajahi Komodo dengan kapal phinisi mewah berkapasitas 20 orang.', featured: true },
@@ -36,3 +36,26 @@ export const features = [
   { icon: '🍽️', title: 'Restoran Lokal', description: 'Nikmati cita rasa autentik masakan Flores dan seafood segar', category: 'restoran' },
   { icon: '🎁', title: 'Oleh-oleh Khas', description: 'Bawa pulang kenangan indah berupa kerajinan dan produk lokal', category: 'oleh-oleh' },
 ]
+
+export const mockTestimonials: Testimonial[] = [
+  { id: '1', name: 'Budi Setiawan', origin: 'Jakarta', rating: 5, quote: 'Pengalaman luar biasa! Kapal phinisi yang kami sewa sangat nyaman dan kru sangat profesional. Komodo trip tak terlupakan!' },
+  { id: '2', name: 'Siti Rahma', origin: 'Surabaya', rating: 5, quote: 'VoyaBajo membuat perjalanan kami ke Labuan Bajo sangat mudah. Semua tersedia dalam satu aplikasi — highly recommended!' },
+  { id: '3', name: 'Michael Chen', origin: 'Singapore', rating: 5, quote: 'Best travel platform for Labuan Bajo! The booking process was seamless and the local experiences were authentic and unforgettable.' },
+]
+
+export const mockRevenueData: RevenueMonth[] = [
+  { month: 'Sep', revenue: 12500000, bookings: 18 },
+  { month: 'Okt', revenue: 18700000, bookings: 25 },
+  { month: 'Nov', revenue: 22300000, bookings: 31 },
+  { month: 'Des', revenue: 31500000, bookings: 44 },
+  { month: 'Jan', revenue: 26800000, bookings: 37 },
+  { month: 'Feb', revenue: 29400000, bookings: 41 },
+]
+
+export const mockUser: User = {
+  id: 'U001',
+  name: 'Merchant VoyaBajo',
+  email: 'merchant@voyabajo.id',
+  phone: '081234567890',
+  joinedAt: '2023-09-01',
+}
