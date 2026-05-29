@@ -1,4 +1,4 @@
-import LaGattaLandingPage from '@/components/voyabajo/LAGATTA_LANDING_PAGE'
+import LaGattaLandingPage from '@/components/voyabajo/LaGattaLandingPage'
 
 export default function HomePage() {
   return <LaGattaLandingPage />
