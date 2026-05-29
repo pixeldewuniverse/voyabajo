@@ -1,18 +1,11 @@
-import type { AuthSession, User } from './types'
-
-const MOCK_USER: User = {
-  id: 'U001',
-  name: 'Merchant VoyaBajo',
-  email: 'merchant@voyabajo.id',
-  phone: '081234567890',
-  joinedAt: '2023-09-01',
-}
+import type { AuthSession } from './types'
+import { mockUser } from './mockData'
 
 const MOCK_TOKEN = 'mock-jwt-token-voyabajo-2024'
 
 export function mockLogin(email: string, password: string): AuthSession | null {
   if (email === 'merchant@voyabajo.id' && password === 'voyabajo123') {
-    return { token: MOCK_TOKEN, user: MOCK_USER }
+    return { token: MOCK_TOKEN, user: mockUser }
   }
   return null
 }

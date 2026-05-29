@@ -23,6 +23,8 @@ export async function POST(request: NextRequest) {
     if (!body.email?.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) return NextResponse.json({ success: false, message: 'Email tidak valid' }, { status: 400 })
     if (!body.phone?.match(/^(\+62|0)[0-9]{9,12}$/)) return NextResponse.json({ success: false, message: 'Nomor HP tidak valid' }, { status: 400 })
     if (!body.date) return NextResponse.json({ success: false, message: 'Tanggal wajib diisi' }, { status: 400 })
+    const today = new Date().toISOString().split('T')[0]
+    if (body.date < today) return NextResponse.json({ success: false, message: 'Tanggal harus di masa depan' }, { status: 400 })
     if (!body.guests || body.guests < 1) return NextResponse.json({ success: false, message: 'Jumlah tamu tidak valid' }, { status: 400 })
 
     const bookingId = `BK${Date.now().toString().slice(-6)}`

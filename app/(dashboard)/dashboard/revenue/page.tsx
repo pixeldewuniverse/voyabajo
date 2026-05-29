@@ -1,10 +1,7 @@
 import { PageHeader } from '@/components/sections/PageHeader'
 import { Card } from '@/components/ui/Card'
 import { mockRevenueData } from '@/lib/mockData'
-
-function formatIDR(n: number) {
-  return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(n)
-}
+import { formatIDR } from '@/lib/formatters'
 
 const maxRevenue = Math.max(...mockRevenueData.map(d => d.revenue))
 

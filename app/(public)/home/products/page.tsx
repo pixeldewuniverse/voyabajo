@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/Input'
 import { Button } from '@/components/ui/Button'
 import { mockProducts } from '@/lib/mockData'
 import type { Product } from '@/lib/types'
+import { formatIDR } from '@/lib/formatters'
 
 const categories = [
   { value: 'all', label: 'Semua' },
@@ -21,10 +22,6 @@ const categoryBadge: Record<string, 'primary' | 'info' | 'success' | 'warning'> 
   rental: 'info',
   restoran: 'success',
   'oleh-oleh': 'warning',
-}
-
-function formatIDR(n: number) {
-  return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(n)
 }
 
 function ProductCard({ product }: { product: Product }) {

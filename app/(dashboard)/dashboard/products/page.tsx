@@ -7,10 +7,7 @@ import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
 import { Modal } from '@/components/ui/Modal'
 import { mockProducts } from '@/lib/mockData'
-
-function formatIDR(n: number) {
-  return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(n)
-}
+import { formatIDR } from '@/lib/formatters'
 
 const categoryVariant: Record<string, 'primary' | 'info' | 'success' | 'warning'> = {
   phinisi: 'primary', rental: 'info', restoran: 'success', 'oleh-oleh': 'warning',

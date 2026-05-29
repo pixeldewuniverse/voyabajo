@@ -7,10 +7,7 @@ import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { Toast } from '@/components/ui/Toast'
 import type { BookingFormData } from '@/lib/types'
-
-function formatIDR(n: number) {
-  return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(n)
-}
+import { formatIDR } from '@/lib/formatters'
 
 const PRICE_PER_PERSON = 750000
 

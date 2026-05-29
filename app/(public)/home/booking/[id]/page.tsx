@@ -2,10 +2,7 @@ import { mockBookings } from '@/lib/mockData'
 import { PageHeader } from '@/components/sections/PageHeader'
 import { Card } from '@/components/ui/Card'
 import { Badge } from '@/components/ui/Badge'
-
-function formatIDR(n: number) {
-  return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(n)
-}
+import { formatIDR } from '@/lib/formatters'
 
 const statusVariant: Record<string, 'success' | 'warning' | 'info' | 'default'> = {
   confirmed: 'success', pending: 'warning', completed: 'info', cancelled: 'default',
