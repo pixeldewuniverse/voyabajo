@@ -1,3 +1,5 @@
+'use client'
+import { useId } from 'react'
 import { cn } from '@/lib/cn'
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -8,7 +10,8 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 export function Input({ label, error, helperText, required, className, id, ...props }: InputProps) {
-  const inputId = id || label?.toLowerCase().replace(/\s+/g, '-')
+  const autoId = useId()
+  const inputId = id || autoId
   return (
     <div className="flex flex-col gap-1">
       {label && (

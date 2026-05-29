@@ -1,0 +1,7 @@
+export { PageLayout } from './PageLayout'
+export { PageHeader } from './PageHeader'
+export { HeroSection } from './HeroSection'
+export { FeatureSection } from './FeatureSection'
+export { CTASection } from './CTASection'
+export { StatsSection } from './StatsSection'
+export { TestimonialsSection } from './TestimonialsSection'
